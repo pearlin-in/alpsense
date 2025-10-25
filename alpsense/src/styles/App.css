@@ -21,6 +21,11 @@ body {
   min-height: 100vh;
 }
 
+/* Make room for the fixed vertical navbar on the left */
+.layout {
+  padding-left: 220px; /* match the sidebar width in Navbar.css */
+}
+
 /* Futuristic scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
