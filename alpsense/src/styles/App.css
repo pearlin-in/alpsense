@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  background: #241D25;
   color: #e0e0e0;
   overflow-x: hidden;
 }
@@ -21,12 +21,38 @@ body {
   min-height: 100vh;
 }
 
-/* Make room for the fixed vertical navbar on the left */
-.layout {
-  padding-left: 220px; /* match the sidebar width in Navbar.css */
+.control-btn-python{
+  background:#03937E;
+  color: #0a0a0a;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  bottom: 20px;
+  margin-left:5%;
+  margin-top:-2%;
+  margin-bottom:5%;
+  box-shadow: 0 4px 15px rgba(3, 147, 126, 0.4);
+  transition: all 0.3s ease;
 }
-
-/* Futuristic scrollbar */
+.control-btn-download{
+  background:#03937E;
+  color: #0a0a0a;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  bottom: 20px;
+  margin-left:5%;
+  margin-top:-2%;
+  margin-bottom:5%;
+  box-shadow: 0 4px 15px rgba(3, 147, 126, 0.4);
+  transition: all 0.3s ease;
+}
 ::-webkit-scrollbar {
   width: 8px;
 }
