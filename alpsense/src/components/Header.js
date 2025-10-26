@@ -6,8 +6,6 @@ const Header = () => {
     <header className="header">
       <div className="header-top">
         <div className="company-name">ALPSENSE</div>
-        <nav className="main-nav">
-        </nav>
       </div>
       
       <div className="header-bottom">
