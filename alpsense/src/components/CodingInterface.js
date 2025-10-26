@@ -23,7 +23,6 @@ const CodingInterface = () => {
           spellCheck="false"
         />
       </div>
-      
       <OutputScreen />
     </div>
   );
