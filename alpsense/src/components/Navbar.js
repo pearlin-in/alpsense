@@ -17,6 +17,15 @@ const Navbar = () => {
           </div>
         ))}
       </div>
+
+      {/* Search placed at the right side of the horizontal navbar */}
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search..."
+          className="search-input"
+        />
+      </div>
     </nav>
   );
 };
