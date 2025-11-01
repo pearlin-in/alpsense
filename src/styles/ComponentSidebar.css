@@ -1,0 +1,208 @@
+.component-navbar-container {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(135deg, #095B4F 0%, #027a63 100%);
+  border-bottom: 2px solid #00ff88;
+  box-shadow: 0 4px 20px rgba(0, 255, 136, 0.2);
+}
+
+.component-navbar {
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.component-nav-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.component-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #e0e0e0;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid transparent;
+  min-width: 120px;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.component-nav-item:hover {
+  background: rgba(0, 255, 136, 0.2);
+  border-color: #00ff88;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 255, 136, 0.4);
+}
+
+.component-nav-item.active {
+  background: rgba(0, 255, 136, 0.3);
+  border-color: #00ff88;
+  color: #00ff88;
+  box-shadow: 0 4px 15px rgba(0, 255, 136, 0.5);
+}
+
+.component-icon {
+  font-size: 1.2rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.component-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+/* Component Options Popup */
+.component-popup {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(9, 91, 79, 0.95) 100%);
+  border: 2px solid #00ccff;
+  border-radius: 15px;
+  backdrop-filter: blur(15px);
+  z-index: 1000;
+  min-width: 220px;
+  margin-top: 5px;
+  box-shadow: 0 10px 35px rgba(0, 204, 255, 0.4);
+}
+
+.component-popup-header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #095B4F 100%);
+  padding: 1.2rem 1.5rem;
+  border-bottom: 2px solid #00ccff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #00ccff;
+  font-weight: 600;
+  border-radius: 13px 13px 0 0;
+}
+
+.component-popup-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.component-popup-close {
+  background: none;
+  border: none;
+  color: #00ccff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.component-popup-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+  color: #00ff88;
+}
+
+.component-popup-content {
+  padding: 1rem;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.component-option-item {
+  color: #e0e0e0;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  font-weight: 500;
+}
+
+.component-option-item:hover {
+  background: rgba(0, 204, 255, 0.15);
+  border-color: #00ccff;
+  transform: translateX(8px);
+  box-shadow: 0 4px 12px rgba(0, 204, 255, 0.3);
+}
+
+/* Scrollbar for component navbar */
+.component-navbar::-webkit-scrollbar {
+  height: 6px;
+}
+
+.component-navbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.component-navbar::-webkit-scrollbar-thumb {
+  background: #00ff88;
+  border-radius: 3px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .component-navbar {
+    padding: 0.8rem 1rem;
+  }
+  
+  .component-nav-item {
+    padding: 0.7rem 1rem;
+    min-width: 110px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .component-nav-container {
+    justify-content: center;
+  }
+  
+  .component-nav-item {
+    min-width: 100px;
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .component-icon {
+    font-size: 1rem;
+  }
+  
+  .component-name {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .component-navbar {
+    padding: 0.6rem;
+  }
+  
+  .component-nav-item {
+    min-width: 85px;
+    padding: 0.5rem 0.6rem;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  .component-popup {
+    min-width: 200px;
+    left: 20px;
+    right: 20px;
+    transform: none;
+  }
+}

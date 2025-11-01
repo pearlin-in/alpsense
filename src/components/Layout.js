@@ -1,14 +1,20 @@
 import React from 'react';
 import Header from './Header';
 import Navbar from './Navbar';
+import ComponentSidebar from './ComponentSidebar';
 import CodingInterface from './CodingInterface';
 
-const Layout = () => {
+const Layout = ({ isPythonMode }) => {
   return (
     <div className="layout">
       <Header />
       <Navbar />
-      <CodingInterface />
+      <div className="main-content">
+        <ComponentSidebar />
+        <div className="coding-area">
+          <CodingInterface isPythonMode={isPythonMode} />
+        </div>
+      </div>
     </div>
   );
 };

@@ -2,9 +2,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  padding: 2rem;
-  flex: 1;
-  height: calc(100vh - 200px);
+  height: 100%;
+  min-height: 600px;
 }
 
 .editor-container, .output-screen {
@@ -14,6 +13,8 @@
   backdrop-filter: blur(10px);
   box-shadow: 0 8px 32px rgba(0, 204, 255, 0.1);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .editor-header, .output-header {
@@ -45,7 +46,7 @@
 }
 
 .control-btn.run {
-  background: linear-gradient(135deg, #00ff88 0%, #00cc88 100%);
+  background: #03937E;
   color: #0a0a0a;
 }
 
@@ -67,8 +68,7 @@
 }
 
 .code-editor {
-  width: 100%;
-  height: 400px;
+  flex: 1;
   background: #0a0a0a;
   color: #00ff88;
   border: none;
@@ -78,6 +78,7 @@
   line-height: 1.5;
   resize: none;
   outline: none;
+  min-height: 400px;
 }
 
 .code-editor:focus {
@@ -85,11 +86,12 @@
 }
 
 .output-content {
+  flex: 1;
   padding: 1rem;
-  height: 400px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  min-height: 400px;
 }
 
 .circular-display {
@@ -102,6 +104,7 @@
   border-radius: 50%;
   position: relative;
   overflow: hidden;
+  min-height: 200px;
 }
 
 .circular-display::before {
@@ -157,6 +160,9 @@
   border: 1px solid #333;
   border-radius: 5px;
   overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .console-header {
@@ -173,6 +179,8 @@
   font-size: 12px;
   color: #00ff88;
   line-height: 1.4;
+  flex: 1;
+  overflow-y: auto;
 }
 
 .console-line {
@@ -182,10 +190,26 @@
 @media (max-width: 1024px) {
   .coding-interface {
     grid-template-columns: 1fr;
-    height: auto;
+    gap: 1rem;
   }
   
   .code-editor, .output-content {
-    height: 300px;
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .coding-interface {
+    grid-template-columns: 1fr;
+  }
+  
+  .editor-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .control-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
   }
 }

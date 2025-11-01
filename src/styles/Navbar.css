@@ -1,55 +1,277 @@
+.navbar-container {
+  position: relative;
+  width: 100%;
+  background: #03937E;
+}
+
 .navbar {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  background: #03937E;
   border-bottom: 1px solid #00ccff;
-  padding: 0.5rem 2rem;
+  padding: 0.8rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
   overflow-x: auto;
+  z-index: 90;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
   display: flex;
-  gap: 2rem;
-  min-width: max-content;
+  gap: 0.8rem;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .nav-item {
   color: #e0e0e0;
-  padding: 0.75rem 1rem;
+  padding: 0.7rem 1.2rem;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 8px;
   transition: all 0.3s ease;
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
   position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid transparent;
+  font-size: 0.9rem;
+  min-width: 80px;
+  text-align: center;
 }
 
 .nav-item:hover {
   color: #00ccff;
-  background: rgba(0, 204, 255, 0.1);
-  transform: translateY(-1px);
+  background: rgba(0, 204, 255, 0.15);
+  border-color: #00ccff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 204, 255, 0.3);
 }
 
-.nav-item::after {
+.nav-item.active {
+  color: #00ff88;
+  background: rgba(0, 255, 136, 0.2);
+  border: 1px solid #00ff88;
+  box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
+}
+
+.navbar::-webkit-scrollbar {
+  height: 6px;
+}
+
+.navbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.navbar::-webkit-scrollbar-thumb {
+  background: #00ccff;
+  border-radius: 3px;
+}
+
+.search-bar {
+  margin-left: auto;
+  min-width: 200px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #e0e0e0;
+  font-size: 0.9rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #00ccff;
+  box-shadow: 0 0 15px rgba(0, 204, 255, 0.4);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Left Side Popup */
+.left-side-popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 320px;
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(9, 91, 79, 0.95) 100%);
+  border-right: 3px solid #00ff88;
+  backdrop-filter: blur(15px);
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 5px 0 30px rgba(0, 255, 136, 0.2);
+}
+
+.left-side-popup.active {
+  transform: translateX(0);
+}
+
+.popup-header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #095B4F 100%);
+  padding: 1.5rem;
+  border-bottom: 2px solid #00ff88;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #00ff88;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.popup-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  background: linear-gradient(135deg, #00ff88 0%, #00ccff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.popup-close {
+  background: none;
+  border: none;
+  color: #00ccff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 0;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.popup-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+  color: #00ff88;
+}
+
+.popup-content {
+  padding: 1.5rem;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+}
+
+.curved-buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.curved-button {
+  background: linear-gradient(135deg, rgba(3, 147, 126, 0.3) 0%, rgba(0, 204, 255, 0.2) 100%);
+  color: #e0e0e0;
+  padding: 1rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.curved-button:hover {
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.3) 0%, rgba(0, 204, 255, 0.4) 100%);
+  border-color: #00ff88;
+  transform: translateX(10px);
+  box-shadow: 0 5px 20px rgba(0, 255, 136, 0.3);
+}
+
+.curved-button::before {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #00ccff, #00ff88);
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
 }
 
-.nav-item:hover::after {
-  width: 60%;
+.curved-button:hover::before {
+  left: 100%;
 }
 
-/* Hide scrollbar for navbar */
-.navbar::-webkit-scrollbar {
-  display: none;
+/* Responsive Navbar */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 0.8rem 1rem;
+  }
+  
+  .nav-item {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    min-width: 70px;
+  }
+  
+  .search-bar {
+    min-width: 150px;
+  }
 }
 
-.navbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 0.8rem;
+  }
+  
+  .nav-container {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .search-bar {
+    margin-left: 0;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .left-side-popup {
+    width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-item {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+    min-width: 60px;
+  }
+  
+  .left-side-popup {
+    width: 250px;
+  }
+  
+  .popup-header {
+    padding: 1rem;
+  }
+  
+  .popup-content {
+    padding: 1rem;
+  }
+  
+  .curved-button {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
 }
