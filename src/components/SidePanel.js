@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/SidePanel.css';
+import BlocksPalette from './BlocksPalette';
 
 const SidePanel = ({ activeNavItem, setActiveNavItem }) => {
+  const [selectedItem, setSelectedItem] = useState(null);
   const hardwareComponents = [
     'Speaker', 'RGB LED', 'Power', 'Touch Sensor', 'Vibration Motor'
   ];
@@ -17,10 +19,19 @@ const SidePanel = ({ activeNavItem, setActiveNavItem }) => {
           <div className="panel-section">
             <h3>Hardware Components</h3>
             {hardwareComponents.map((component, index) => (
-              <div key={index} className="panel-item">
+              <div
+                key={index}
+                className={`panel-item ${selectedItem === component ? 'active' : ''}`}
+                onClick={() => setSelectedItem(component)}
+              >
                 {component}
               </div>
             ))}
+            {selectedItem && (
+              <div className="panel-subsection">
+                <BlocksPalette category={activeNavItem} item={selectedItem} />
+              </div>
+            )}
           </div>
         );
       case 'UI':
@@ -28,10 +39,19 @@ const SidePanel = ({ activeNavItem, setActiveNavItem }) => {
           <div className="panel-section">
             <h3>UI Components</h3>
             {uiComponents.map((component, index) => (
-              <div key={index} className="panel-item">
+              <div
+                key={index}
+                className={`panel-item ${selectedItem === component ? 'active' : ''}`}
+                onClick={() => setSelectedItem(component)}
+              >
                 {component}
               </div>
             ))}
+            {selectedItem && (
+              <div className="panel-subsection">
+                <BlocksPalette category={activeNavItem} item={selectedItem} />
+              </div>
+            )}
           </div>
         );
       case 'EVENT':

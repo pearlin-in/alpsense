@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/Navbar.css';
+import BlocksPalette from './BlocksPalette';
 
 const Navbar = () => {
   const [activeNavItem, setActiveNavItem] = useState(null);
@@ -21,6 +22,22 @@ const Navbar = () => {
 
   const handleNavItemClick = (item) => {
     setActiveNavItem(activeNavItem === item ? null : item);
+    // reset selected option when changing category
+    setSelectedOption(null);
+  };
+
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const mapOptionToItem = (option) => {
+    // crude mapping (normalize names) - adapt as needed
+    if (!option) return option;
+    if (option.toLowerCase().includes('speaker')) return 'Speaker';
+    if (option.toLowerCase().includes('rgb')) return 'RGB LED';
+    if (option.toLowerCase().includes('power')) return 'Power';
+    if (option.toLowerCase().includes('touch')) return 'Touch Sensor';
+    if (option.toLowerCase().includes('vibration')) return 'Vibration Motor';
+    if (option.toLowerCase().includes('screen')) return 'Screen Layout';
+    return option;
   };
 
   return (
@@ -62,11 +79,21 @@ const Navbar = () => {
           <div className="popup-content">
             <div className="curved-buttons-container">
               {navOptions[activeNavItem].map((option, index) => (
-                <button key={index} className="curved-button">
+                <button
+                  key={index}
+                  className={`curved-button ${selectedOption === option ? 'active' : ''}`}
+                  onClick={() => setSelectedOption(option)}
+                >
                   {option}
                 </button>
               ))}
             </div>
+
+            {selectedOption && (
+              <div className="popup-palette">
+                <BlocksPalette category={activeNavItem} item={mapOptionToItem(selectedOption)} />
+              </div>
+            )}
           </div>
         </div>
       )}
