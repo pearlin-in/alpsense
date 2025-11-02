@@ -211,6 +211,15 @@
   left: 100%;
 }
 
+.curved-button.active {
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.3) 0%, rgba(0, 204, 255, 0.4) 100%);
+  border-color: #00ff88;
+}
+
+.popup-palette {
+  margin-top: 1rem;
+}
+
 /* Responsive Navbar */
 @media (max-width: 1024px) {
   .navbar {

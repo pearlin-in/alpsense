@@ -1,0 +1,33 @@
+.blocks-palette {
+  padding: 0.5rem 0;
+}
+
+.blocks-palette h4 {
+  margin: 0 0 0.5rem 0;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.palette-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.palette-block {
+  background: #2a2a2a;
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  cursor: grab;
+  user-select: none;
+}
+
+.palette-block:active {
+  cursor: grabbing;
+}
+
+.palette-empty {
+  color: rgba(255,255,255,0.5);
+  font-style: italic;
+}

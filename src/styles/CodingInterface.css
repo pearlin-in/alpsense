@@ -6,6 +6,38 @@
   min-height: 600px;
 }
 
+.mode-toggle {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.toggle-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: rgba(26, 26, 46, 0.8);
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.toggle-btn.active {
+  background-color: #007acc;
+  color: white;
+  border-color: #007acc;
+}
+
+.toggle-btn:hover {
+  background-color: #2a2a4a;
+}
+
+.toggle-btn.active:hover {
+  background-color: #005999;
+}
+
 .editor-container, .output-screen {
   background: rgba(26, 26, 46, 0.8);
   border: 1px solid #00ccff;

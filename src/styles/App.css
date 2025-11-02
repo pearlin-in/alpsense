@@ -174,12 +174,72 @@ body {
 /* Bottom Controls */
 .bottom-controls {
   position: fixed;
-  bottom: 20px;
-  left: 20px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: rgba(26, 26, 46, 0.8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(10px);
+}
+
+.editor-mode-controls {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.editor-switch-container {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  z-index: 40;
+  gap: 0.5rem;
+}
+
+.editor-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.editor-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.editor-switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2d2d2d;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.editor-switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+.editor-switch input:checked + .slider {
+  background-color: #007acc;
+}
+
+.editor-switch input:checked + .slider:before {
+  transform: translateX(26px);
 }
 
 .python-switch-container {
