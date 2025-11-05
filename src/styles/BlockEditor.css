@@ -1,0 +1,111 @@
+.block-editor {
+  padding: 1rem;
+  background: #0a0a0a;
+  min-height: 400px;
+  overflow-y: auto;
+}
+
+.blocks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.block {
+  background: #1a1a2e;
+  border: 2px solid #00ccff;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.block:hover {
+  border-color: #00ff88;
+  box-shadow: 0 4px 12px rgba(0, 255, 136, 0.2);
+}
+
+.block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #333;
+}
+
+.block-type {
+  color: #00ff88;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.block-controls {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.block-controls button {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #00ccff;
+  padding: 0.3rem 0.5rem;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.block-controls button:hover {
+  background: rgba(0, 204, 255, 0.3);
+}
+
+.block-content input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 0.5rem;
+  color: #00ff88;
+  font-family: 'Courier New', monospace;
+}
+
+.block-content input:focus {
+  outline: none;
+  border-color: #00ccff;
+}
+
+.variable-inputs, .loop-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.variable-inputs span, .loop-inputs span {
+  color: #00ccff;
+  font-weight: bold;
+}
+
+.empty-state {
+  text-align: center;
+  color: #666;
+  padding: 2rem;
+  font-style: italic;
+}
+
+.block-print {
+  border-color: #00ff88;
+}
+
+.block-variable {
+  border-color: #ffcc00;
+}
+
+.block-loop {
+  border-color: #ff00ff;
+}
+
+.block-function {
+  border-color: #00ccff;
+}
+
+.block-if {
+  border-color: #ff4444;
+}
