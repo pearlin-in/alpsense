@@ -1,0 +1,57 @@
+.blocks-palette {
+  padding: 0.5rem 0;
+}
+
+.blocks-palette h4 {
+  margin: 0 0 0.5rem 0;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.palette-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.palette-block {
+  background: #2a2a2a;
+  color: #fff;
+  padding: 0.6rem 0.9rem;
+  border-radius: 6px;
+  cursor: grab;
+  user-select: none;
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  opacity: 1;
+}
+
+.palette-block:hover {
+  transform: translateX(6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  background: linear-gradient(90deg, #2f2f2f, #262626);
+}
+
+.palette-block:active {
+  cursor: grabbing;
+  transform: scale(0.99);
+}
+
+.palette-empty {
+  color: rgba(255,255,255,0.5);
+  font-style: italic;
+}
+
+/* Make palette items show a proper drag preview */
+.palette-block[draggable="true"] {
+  -webkit-user-drag: element;
+}
+
+/* Preserve block appearance during drag */
+.palette-block:global(.dragging) {
+  opacity: 0.9;
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  background: linear-gradient(90deg, #363636, #2a2a2a);
+  pointer-events: none;
+}

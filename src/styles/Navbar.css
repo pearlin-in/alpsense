@@ -101,18 +101,18 @@
 
 /* Left Side Popup */
 .left-side-popup {
-  position: fixed;
+  position: absolute;
   left: 0;
-  top: 0;
-  height: 100vh;
-  width: 320px;
-  background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(9, 91, 79, 0.95) 100%);
-  border-right: 3px solid #00ff88;
+  top: 100%;
+  height: calc(140vh - 120px);  /* Adjust this value based on navbar + header height */
+  width: 220px;
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.98) 0%, rgba(9, 91, 79, 0.98) 100%);
+  border-right: 2px solid #00ff88;
   backdrop-filter: blur(15px);
-  z-index: 1000;
+  z-index: 89;  /* Just below navbar's z-index of 90 */
   transform: translateX(-100%);
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 5px 0 30px rgba(0, 255, 136, 0.2);
+  box-shadow: 5px 0 20px rgba(0, 255, 136, 0.2);
 }
 
 .left-side-popup.active {
