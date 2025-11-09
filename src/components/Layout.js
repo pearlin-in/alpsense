@@ -1,13 +1,11 @@
 import React from 'react';
-import Header from './Header';
 import Navbar from './Navbar';
 import ComponentSidebar from './ComponentSidebar';
 import CodingInterface from './CodingInterface';
 
-const Layout = ({ isPythonMode, onExecuteCode, output, isLoading }) => {
+const Layout = ({ isPythonMode, onExecuteCode, output, isLoading, isBackendConnected }) => {
   return (
     <div className="layout">
-      <Header />
       <Navbar />
       <div className="main-content">
         <div className="coding-area">
@@ -16,6 +14,7 @@ const Layout = ({ isPythonMode, onExecuteCode, output, isLoading }) => {
             onExecuteCode={onExecuteCode}
             output={output}
             isLoading={isLoading}
+            isBackendConnected={isBackendConnected}
           />
         </div>
         <ComponentSidebar />

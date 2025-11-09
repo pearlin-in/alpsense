@@ -6,75 +6,120 @@ const CodingInterface = ({
   isPythonMode, 
   onExecuteCode, 
   output, 
-  isLoading
+  isLoading,
+  isBackendConnected,
+  onStopExecution
 }) => {
-  const [code, setCode] = useState(`# Welcome to ALPSENSE Python Editor!
-# Write your Python code here and click Run to see the output.
+  const [code, setCode] = useState(`# ALPSENSE Python Playground
+# Try these interactive examples!
 
-print("Hello ALPSENSE!")
+# Example 1: Basic input
+name = input("What's your name? ")
+print(f"Hello, {name}! 👋")
 
-# Example: Simple calculator
-def add_numbers(a, b):
-    return a + b
+# Example 2: Number input
+age = int(input("How old are you? "))
+print(f"You are {age} years old!")
 
-result = add_numbers(5, 3)
-print(f"5 + 3 = {result}")
+# Example 3: Multiple inputs
+color = input("What's your favorite color? ")
+print(f"{color} is a beautiful color! 🌈")
 
-# Example: Loop
-for i in range(3):
-    print(f"Count: {i}")
+# Example 4: Calculator
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+print(f"{num1} + {num2} = {num1 + num2}")
 
-# Your code goes below:
+# Example 5: Loop with input
+for i in range(2):
+    item = input(f"Enter item {i+1}: ")
+    print(f"Added: {item}")
+
+print("🎉 All done! Thanks for using ALPSENSE!")
+
+# Try your own interactive code below!
 `);
 
   const handleRunCode = () => {
+    if (!isBackendConnected) {
+      alert('Backend server not connected! Please make sure the server is running on port 5000.');
+      return;
+    }
     onExecuteCode(code);
   };
 
   const handleClear = () => {
-    setCode('# Write your Python code here\n\n');
-    onExecuteCode('');
+    setCode('# Write your Python code here\n\nprint("Start coding! 🚀")');
   };
 
   const handleSave = () => {
-    // Simple save functionality - just alert for now
-    alert('Python code saved! (In a real app, this would save to file/database)');
+    alert('💾 Code saved! (This would save to file in a real application)');
   };
 
   return (
     <div className="coding-interface">
       <div className="editor-container">
         <div className="editor-header">
-          <span>Python Editor</span>
+          <span>Python Editor {!isBackendConnected && ' (Offline)'}</span>
           <div className="editor-controls">
             <button 
               className="control-btn run" 
               onClick={handleRunCode}
-              disabled={isLoading}
+              disabled={isLoading || !isBackendConnected}
             >
-              {isLoading ? 'Running...' : 'Run'}
+              {isLoading ? '⚡ Running...' : '🚀 Run'}
             </button>
+            {isLoading && (
+              <button 
+                className="control-btn stop"
+                onClick={onStopExecution}
+              >
+                🛑 Stop
+              </button>
+            )}
             <button className="control-btn clear" onClick={handleClear}>
-              Clear
+              🗑️ Clear
             </button>
             <button className="control-btn save" onClick={handleSave}>
-              Save
+              💾 Save
             </button>
           </div>
         </div>
+
         
-        <textarea
-          className="code-editor"
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-          spellCheck="false"
-          placeholder="# Write your Python code here..."
-        />
+        
+        <div className="code-editor-container">
+          <textarea
+            className="code-editor"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            spellCheck="false"
+            placeholder="# Write your Python code here..."
+            disabled={!isBackendConnected}
+          />
+          {!isBackendConnected && (
+            <div className="offline-overlay">
+              <div className="offline-message">
+                <h3>🔌 Backend Server Offline</h3>
+                <p>To run Python code:</p>
+                <ol>
+                  <li>Open a new terminal</li>
+                  <li>Run: <code>cd server</code></li>
+                  <li>Run: <code>npm start</code></li>
+                  <li>Wait for "Server running on http://localhost:5000"</li>
+                  <li>Refresh this page</li>
+                </ol>
+                <p><strong>Also make sure Python is installed on your system!</strong></p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
       
       <OutputScreen 
         output={output}
         isLoading={isLoading}
+        isBackendConnected={isBackendConnected}
       />
     </div>
   );

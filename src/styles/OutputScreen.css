@@ -169,3 +169,29 @@
 .placeholder-line {
   margin-bottom: 0.5rem;
 }
+
+.waiting-badge {
+  background: rgba(255, 204, 0, 0.2);
+  color: #ffcc00;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  margin-left: 0.5rem;
+  border: 1px solid #ffcc00;
+}
+
+.circular-display.waiting {
+  border-color: #ffcc00;
+  animation: pulseWarning 2s infinite;
+}
+
+@keyframes pulseWarning {
+  0%, 100% { 
+    border-color: #ffcc00; 
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.4); 
+  }
+  50% { 
+    border-color: #ffaa00; 
+    box-shadow: 0 0 30px rgba(255, 204, 0, 0.6); 
+  }
+}
