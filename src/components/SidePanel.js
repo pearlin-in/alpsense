@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/SidePanel.css';
 
-const SidePanel = ({ activeNavItem, setActiveNavItem }) => {
+const SidePanel = ({ activeNavItem, setActiveNavItem, selectedNavOption, blocks, setBlocks }) => {
   const hardwareComponents = [
     'Speaker', 'RGB LED', 'Power', 'Touch Sensor', 'Vibration Motor'
   ];
@@ -9,6 +9,8 @@ const SidePanel = ({ activeNavItem, setActiveNavItem }) => {
   const uiComponents = [
     'Screen Layout', 'Display Settings', 'Theme Options', 'Widgets'
   ];
+
+  
 
   const renderPanelContent = () => {
     switch (activeNavItem) {
@@ -57,8 +59,12 @@ const SidePanel = ({ activeNavItem, setActiveNavItem }) => {
     }
   };
 
+  
+
+  const isActive = !!(activeNavItem || selectedNavOption);
+
   return (
-    <div className={`side-panel ${activeNavItem ? 'active' : ''}`}>
+    <div className={`side-panel ${isActive ? 'active' : ''}`}>
       <div className="panel-header">
         <span>{activeNavItem} Options</span>
         <button 
@@ -70,6 +76,8 @@ const SidePanel = ({ activeNavItem, setActiveNavItem }) => {
       </div>
       <div className="panel-content">
         {renderPanelContent()}
+
+        
       </div>
     </div>
   );

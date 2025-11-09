@@ -1,7 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/BlockEditor.css';
 
 const BlockEditor = ({ blocks, setBlocks, onAddBlock }) => {
+  const [isDragOver, setIsDragOver] = useState(false);
+  // Handle drop events from BlocksPalette
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    const data = e.dataTransfer.getData('text/plain');
+    if (!data) return;
+    try {
+      const block = JSON.parse(data);
+      const newBlock = { type: block.type ? block.type.toLowerCase() : 'custom', label: block.label || block.type, value: block.label || '' };
+      setBlocks((prev) => [...prev, newBlock]);
+    } catch (err) {
+      console.warn('Dropped data not JSON', err);
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleDragEnter = (e) => {
+    e.preventDefault();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    setIsDragOver(false);
+  };
   const updateBlock = (index, field, value) => {
     const updatedBlocks = [...blocks];
     updatedBlocks[index] = { ...updatedBlocks[index], [field]: value };
@@ -27,12 +56,12 @@ const BlockEditor = ({ blocks, setBlocks, onAddBlock }) => {
   };
 
   return (
-    <div className="block-editor">
+    <div className={`block-editor ${isDragOver ? 'drag-over' : ''}`} onDrop={handleDrop} onDragOver={handleDragOver} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave}>
       <div className="blocks-container">
         {blocks.length === 0 ? (
           <div className="empty-state">
             <p>No blocks added yet.</p>
-            <p>Click on components in the sidebar to add blocks!</p>
+            <p>Drag blocks from the left palette here or click a block to add it.</p>
           </div>
         ) : (
           blocks.map((block, index) => (

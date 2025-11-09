@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import BlocksPalette from './BlocksPalette';
 import '../styles/Navbar.css';
 
-const Navbar = () => {
-  const [activeNavItem, setActiveNavItem] = useState(null);
-
+const Navbar = ({ activeNavItem, setActiveNavItem, selectedNavOption, setSelectedNavOption, setBlocks }) => {
   const navItems = [
     'EVENT', 'UI', 'HARDWARE', 'UNITS', 'MODULES', 
     'IOT CLOUD', 'MC CLOUD', 'EZDATA', 'VARIABLES', 
@@ -20,7 +19,11 @@ const Navbar = () => {
   };
 
   const handleNavItemClick = (item) => {
-    setActiveNavItem(activeNavItem === item ? null : item);
+    // Toggle active nav item; if switching items, clear selected option
+    const newItem = activeNavItem === item ? null : item;
+    setActiveNavItem(newItem);
+    if (newItem === null) setSelectedNavOption(null);
+    else setSelectedNavOption(null);
   };
 
   return (
@@ -62,11 +65,43 @@ const Navbar = () => {
           <div className="popup-content">
             <div className="curved-buttons-container">
               {navOptions[activeNavItem].map((option, index) => (
-                <button key={index} className="curved-button">
+                <button 
+                  key={index} 
+                  className={`curved-button ${selectedNavOption === option ? 'selected' : ''}`}
+                  onClick={() => setSelectedNavOption(option)}
+                >
                   {option}
                 </button>
               ))}
             </div>
+
+            {/* Blocks palette: render inside the left-side popup below the option buttons */}
+            {selectedNavOption && (() => {
+              // Map verbose option labels (e.g. "Speaker Configuration") to palette item keys (e.g. "Speaker")
+              const derivePaletteItem = (option) => {
+                if (!option) return option;
+                const o = option.toLowerCase();
+                if (o.includes('speaker')) return 'Speaker';
+                if (o.includes('rgb')) return 'RGB LED';
+                if (o.includes('power')) return 'Power';
+                if (o.includes('touch')) return 'Touch Sensor';
+                if (o.includes('vibration')) return 'Vibration Motor';
+                if (o.includes('screen')) return 'Screen Layout';
+                return option;
+              };
+
+              const paletteItem = derivePaletteItem(selectedNavOption);
+
+              return (
+                <div className="popup-palette">
+                  <h4>Blocks for: {selectedNavOption}</h4>
+                  <BlocksPalette category={activeNavItem} item={paletteItem} onAddBlock={(b) => {
+                    const newBlock = { type: b.type ? b.type.toLowerCase() : 'custom', label: b.label || b.type, value: b.label || '' };
+                    setBlocks((prev) => [...prev, newBlock]);
+                  }} />
+                </div>
+              );
+            })()}
           </div>
         </div>
       )}
